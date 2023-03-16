@@ -291,6 +291,7 @@ const NavBarContainer = () => {
                           src="https://tailwindui.com/img/flags/flag-canada.svg"
                           alt=""
                           className="block h-auto w-5 flex-shrink-0"
+                          width={20} height={15}
                         />
                         <span className="ml-3 block text-base font-medium text-gray-900">CAD</span>
                         <span className="sr-only">, change currency</span>
@@ -326,6 +327,7 @@ const NavBarContainer = () => {
                         className="h-8 w-auto"
                         src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                         alt=""
+                        width={38} height={32}
                       />
                     </a>
                   </div>

@@ -4,6 +4,13 @@ import { ChevronUpIcon } from '@heroicons/react/20/solid'
 
 import { useState, useEffect } from "react";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import Reviews from "./Reviews";
+import Tabs from "./Tabs";
+import AddToCart from "../../components/AddToCart";
+import SideCart from "../../components/SideCart";
+import Gallery from "../../components/Gallery";
+import SideOverCart from "../../components/SideOverCart";
+import { ProductWidget } from "../../components/product/ProductWidget";
 
 const product = {
     name: 'Basic Tee 6-Pack',
@@ -115,6 +122,8 @@ export default function Product() {
     const [selectedColor, setSelectedColor] = useState(product.colors[0])
     const [selectedSize, setSelectedSize] = useState(product.sizes[2])
     let [isOpenSize, setIsOpenSize] = useState(false)
+    const [isOpenCart, setIsOpenCart] = React.useState(false);
+
 
     function closeModal() {
         setIsOpenSize(false)
@@ -141,17 +150,17 @@ export default function Product() {
                         <Breadcrumbs breadcrumbs={breadcrumbs.pages} className="border-b border-gray-200 pb-4" />
                     </div>
                     <div className="w-full lg:w-1/2 px-4 mb-16 lg:mb-0">
-
+                        <Gallery/>
                     </div>
                     <div className="w-full lg:w-1/2 px-4">
                         <div className="mb-6 pt-2">
                             <span className="text-xs text-gray-400 tracking-wider">APPLE #3299803</span>
-                            <h1 className="mt-2 mb-4 text-5xl md:text-4xl font-heading font-medium">Apple iPhone 12 Pro (128GB) - Silver</h1>
-                            <p className="flex items-center mb-6">
-                                <span className="mr-2 text-sm text-blue-500 font-medium">$</span>
-                                <span className="text-3xl text-blue-500 font-medium">44.90</span>
-                            </p>
-                            <p className="text-lg text-gray-400">The nulla commodo, commodo eros a lor, tristique lectus. Lorem sad 128 GB silver.</p>
+                            {/* <h1 className="mt-2 mb-4 text-5xl md:text-4xl font-heading font-medium">Apple iPhone 12 Pro (128GB) - Silver</h1> */}
+                            <h2 className="text-2xl font-bold text-gray-900 sm:pr-12">{product.name}</h2>
+                            <h3 id="information-heading" className="sr-only">
+                                Product information
+                            </h3>
+                            <p className="text-2xl text-gray-900">{product.price}</p>
                         </div>
 
                         {/* Reviews */}
@@ -184,7 +193,7 @@ export default function Product() {
                                 <a href="#" className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">117 reviews</a>
                             </div>
                         </div>
-                        <form className="mt-10">
+                        <div className="mt-10">
                             {/* Colors */}
                             <div>
                                 <h3 className="text-sm font-medium text-gray-900">Color</h3>
@@ -338,20 +347,17 @@ export default function Product() {
                                 </RadioGroup>
                             </div>
                             <div className="mt-10 flex space-x-4">
+                                <AddToCart setIsOpenCart={setIsOpenCart}/>
                                 <button
                                     type="submit"
-                                    className="capitalize w-1/2 items-center justify-center rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                                >
-                                    Add to bag
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="capitalize w-1/2 items-center justify-center rounded-md border-2 border-solid border-slate-600 py-3 px-8 text-base font-medium text-slate hover:bg-slate-600 hover:text-white focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2"
+                                    className="capitalize w-1/2 items-center justify-center rounded-md border-2 border-solid border-slate-600 py-3 px-8 text-base font-medium text-slate hover:bg-slate-600 hover:text-white focus:outline-none"
                                 >
                                     Direct checkout
                                 </button>
                             </div>
-                        </form>
+                            {/* <SideCart isOpenCart={isOpenCart} setIsOpenCart={setIsOpenCart}/> */}
+                            <SideOverCart isOpenCart={isOpenCart} setIsOpenCart={setIsOpenCart}/>
+                        </div>
                         <div>
                             <div className="w-full mt-8">
                                 <div className="mx-auto w-full rounded-2xl bg-white">
@@ -437,6 +443,8 @@ export default function Product() {
                     </div>
                 </div>
             </div>
+            <Tabs product={product}/>
+            <ProductWidget/>
             <div className="bg-white border-t-2 mt-10">
                 <div className="container mx-auto py-16 px-4 sm:py-24 sm:px-6">
                     <h2 className="text-2xl font-bold tracking-tight text-gray-900">Customers also purchased</h2>
@@ -466,20 +474,6 @@ export default function Product() {
                         ))}
                     </div>
                 </div>
-            </div>
-            <div>
-                <Tab.Group>
-                    <Tab.List>
-                        <Tab>Tab 1</Tab>
-                        <Tab>Tab 2</Tab>
-                        <Tab>Tab 3</Tab>
-                    </Tab.List>
-                    <Tab.Panels>
-                        <Tab.Panel>Content 1</Tab.Panel>
-                        <Tab.Panel>Content 2</Tab.Panel>
-                        <Tab.Panel>Content 3</Tab.Panel>
-                    </Tab.Panels>
-                </Tab.Group>
             </div>
         </section>
     );

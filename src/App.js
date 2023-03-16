@@ -4,6 +4,7 @@ import CategoryPage from "./pages/category/CategoryPage.js";
 import { NavBar } from "./layouts";
 import Footer from "./layouts/Footer/Footer.js";
 import Product from "./pages/product/Product.js";
+import Cart from "./pages/cart/Cart.js";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/cat/:cat" element={<CategoryPage />} />
         <Route exact path="/" element={<Home />} />
         <Route path="/product" element={<Product />} />
+        <Route path="/cart" element={<Cart />} />
         {/* <Route path="/:{cat}" element={} /> */}
       </Routes>
       <Footer/>
